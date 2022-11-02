@@ -9,16 +9,24 @@ let numMem = [];
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         display.value += button.id;
-        });
-});
+        })
+})
 
 operators.forEach((button) => {
     button.addEventListener('click', () => {
+        if(numMem.length === 0) {
             let num = removeOp(display.value);
             numMem.push(num);
             display.value = button.id + ' ';
-        })
+        }
+        else if(numMem.length > 0) {
+            let num = removeOp(display.value);
+            numMem.push(num);
+            let workingTotal = operate(button.id, numMem[numMem.length-2], numMem[numMem.length-1]);
+            display.value = workingTotal + " " + button.id + " ";
+        }
     })
+})
 
 clear.addEventListener('click' , () => {
     display.value = '';
