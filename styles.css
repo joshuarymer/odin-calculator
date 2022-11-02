@@ -11,15 +11,18 @@ button {
     margin: 5px;
 }
 
-input {
+#display {
     width: 308px;
     height: 70px;
     padding: 10px;
     border: 2px solid darkslategray;
+    background-color: white;
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 30px;
+    white-space: nowrap;
 }
+ 
 
 #calculator {
     position: absolute;
