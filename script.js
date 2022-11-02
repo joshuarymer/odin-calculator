@@ -1,3 +1,19 @@
+const buttons = document.querySelectorAll('.id-con');
+const display = document.querySelector('#display-input');
+const operators = document.querySelectorAll('.operators');
+const equals = document.querySelector('#equals');
+const clear = document.querySelector('#clear');
+
+buttons.forEach((button) => {
+button.addEventListener('click', () => {
+    display.value += button.id;
+    });
+});
+
+
+
+
+
 function add(a, b) {
     return a + b;
 }
