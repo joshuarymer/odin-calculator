@@ -6,6 +6,7 @@ const clear = document.querySelector('#clear');
 let numMem = [];
 let opMem = '';
 
+
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         display.value += button.id;
@@ -28,7 +29,6 @@ clear.addEventListener('click' , () => {
     numMem = [];
     opMem = '';
 })
-
 
 
 
@@ -66,4 +66,16 @@ function operate(op, a, b) {
             break;
     }
 }
+
+function removeOp(string) {
+    let array = string.split('');
+    for(i = 0; i < array.length; i++) {
+        if(array[i] === '+' || array[i] === '-' || array[i] === '*'|| array[i] === '/') {
+            array.splice(i, 1);
+        };
+    }
+    const output = array.join('');
+    return output;
+}
+
 
