@@ -3,12 +3,31 @@ const display = document.querySelector('#display-input');
 const operators = document.querySelectorAll('.operators');
 const equals = document.querySelector('#equals');
 const clear = document.querySelector('#clear');
+let numMem = [];
+let opMem = '';
 
 buttons.forEach((button) => {
-button.addEventListener('click', () => {
-    display.value += button.id;
-    });
+    button.addEventListener('click', () => {
+        display.value += button.id;
+        });
 });
+
+operators.forEach((button) => {
+    button.addEventListener('click', () => {
+        if(numMem === [])
+        numMem.push(display.value);
+        display.value = button.id + ' ';
+        opMem.push(button.id);
+
+
+    })
+})
+
+clear.addEventListener('click' , () => {
+    display.value = '';
+    numMem = [];
+    opMem = '';
+})
 
 
 
