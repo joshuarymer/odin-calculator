@@ -13,11 +13,12 @@ button {
 
 input {
     width: 308px;
-    height: 75px;
+    height: 70px;
+    padding: 10px;
     border: 2px solid darkslategray;
     border-radius: 5px;
     box-sizing: border-box;
-    font-size: 24px;
+    font-size: 30px;
 }
 
 #calculator {
