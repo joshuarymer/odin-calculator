@@ -37,20 +37,28 @@ clear.addEventListener('click' , () => {
 
 
 function add(a, b) {
-    return a + b;
+    outA = parseInt(a);
+    outB = parseInt(b);
+    return outA + outB;
 }
 
 function subtract(a, b) {
-    return a - b;
+    outA = parseInt(a);
+    outB = parseInt(b);
+    return outA - outB;
 }
 
 function multiply(a, b) {
-    return a * b;
+    outA = parseInt(a);
+    outB = parseInt(b);
+    return outA * outB;
 }
 
 
 function divide(a, b) {
-    return a / b;
+    outA = parseInt(a);
+    outB = parseInt(b);
+    return outA / outB;
 }
 
 function operate(op, a, b) {
