@@ -4,7 +4,6 @@ const operators = document.querySelectorAll('.operators');
 const equals = document.querySelector('#equals');
 const clear = document.querySelector('#clear');
 let numMem = [];
-let opMem = '';
 
 
 buttons.forEach((button) => {
@@ -15,20 +14,16 @@ buttons.forEach((button) => {
 
 operators.forEach((button) => {
     button.addEventListener('click', () => {
-        if(numMem === [])
-        numMem.push(display.value);
-        display.value = button.id + ' ';
-        opMem.push(button.id);
-
-
+            let num = removeOp(display.value);
+            numMem.push(num);
+            display.value = button.id + ' ';
+        })
     })
-})
 
 clear.addEventListener('click' , () => {
     display.value = '';
     numMem = [];
-    opMem = '';
-})
+    opMem = '';})
 
 
 
@@ -52,23 +47,23 @@ function divide(a, b) {
 
 function operate(op, a, b) {
     switch(op) {
-        case add:
+        case '+':
             return add(a, b);
             break;
-        case subtract:
+        case '-':
             return subtract(a, b);
             break;
-        case multiply:
+        case '*':
             return multiply(a, b);
             break;
-        case divide:
+        case '/':
             return divide(a, b);
             break;
     }
 }
 
 function removeOp(string) {
-    let array = string.split('');
+    let array = string.split(' ');
     for(i = 0; i < array.length; i++) {
         if(array[i] === '+' || array[i] === '-' || array[i] === '*'|| array[i] === '/') {
             array.splice(i, 1);
