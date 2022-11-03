@@ -4,36 +4,52 @@ const operators = document.querySelectorAll('.operators');
 const equals = document.querySelector('#equals');
 const clear = document.querySelector('#clear');
 let numMem = [];
+let numTracker = '';
 let opMem = '';
 let workingTotal = 0;
 
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        display.value += button.id + ' ';
-        numMem.push(button.id);
+        display.value += button.id;
+        numTracker += button.id;
         })
 })
 
 operators.forEach((button) => {
     button.addEventListener('click', () => {
-        if(numMem.length === 1) {
-            display.value += button.id + ' ';
-            opMem = button.id
+        if(numMem.length === 0) {
+            numMem.push(numTracker);
+            display.value += '' + button.id + '';
+            numTracker = '';
+            opMem = button.id;
         }
-        else if(numMem.length === 2) {
+        else if(numMem.length === 1) {
+            numMem.push(numTracker);
             workingTotal = operate(opMem, numMem[0], numMem[1]);
             display.value = workingTotal + " " + button.id + " ";
+            numTracker = '';
             opMem = button.id;
             numMem = [workingTotal];
         }
     })
 })
 
+equals.addEventListener('click', () => {
+    if(numMem.length === 1) {
+        numMem.push(numTracker);
+        workingTotal = operate(opMem, numMem[0], numMem[1]);
+        display.value = workingTotal;
+        numTracker = '';
+    }
+})
+
 clear.addEventListener('click' , () => {
     display.value = '';
     numMem = [];
-    opMem = '';})
+    opMem = '';
+    numTracker = '';
+})
 
 
 
