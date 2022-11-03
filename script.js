@@ -7,30 +7,35 @@ let numMem = [];
 let numTracker = '';
 let opMem = '';
 let workingTotal = 0;
+let clickedEquals = false;
 
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        display.value += button.id;
-        numTracker += button.id;
-        })
+        if(clickedEquals === false) {
+            display.value += button.id;
+            numTracker += button.id;
+        }
+    })
 })
 
 operators.forEach((button) => {
     button.addEventListener('click', () => {
-        if(numMem.length === 0) {
-            numMem.push(numTracker);
-            display.value += '' + button.id + '';
-            numTracker = '';
-            opMem = button.id;
-        }
-        else if(numMem.length === 1) {
-            numMem.push(numTracker);
-            workingTotal = operate(opMem, numMem[0], numMem[1]);
-            display.value = workingTotal + " " + button.id + " ";
-            numTracker = '';
-            opMem = button.id;
-            numMem = [workingTotal];
+        if(clickedEquals === false) {
+            if(numMem.length === 0) {
+                numMem.push(numTracker);
+                display.value += ' ' + button.id + ' ';
+                numTracker = '';
+                opMem = button.id;
+            }
+            else if(numMem.length === 1) {
+                numMem.push(numTracker);
+                workingTotal = operate(opMem, numMem[0], numMem[1]);
+                display.value = workingTotal + " " + button.id + " ";
+                numTracker = '';
+                opMem = button.id;
+                numMem = [workingTotal];
+            }
         }
     })
 })
@@ -41,6 +46,7 @@ equals.addEventListener('click', () => {
         workingTotal = operate(opMem, numMem[0], numMem[1]);
         display.value = workingTotal;
         numTracker = '';
+        clickedEquals = true;
     }
 })
 
@@ -49,6 +55,7 @@ clear.addEventListener('click' , () => {
     numMem = [];
     opMem = '';
     numTracker = '';
+    clickedEquals = false;
 })
 
 
