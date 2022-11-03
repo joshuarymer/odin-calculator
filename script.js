@@ -4,26 +4,28 @@ const operators = document.querySelectorAll('.operators');
 const equals = document.querySelector('#equals');
 const clear = document.querySelector('#clear');
 let numMem = [];
+let opMem = '';
+let workingTotal = 0;
 
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        display.value += button.id;
+        display.value += button.id + ' ';
+        numMem.push(button.id);
         })
 })
 
 operators.forEach((button) => {
     button.addEventListener('click', () => {
-        if(numMem.length === 0) {
-            let num = removeOp(display.value);
-            numMem.push(num);
-            display.value = button.id + ' ';
+        if(numMem.length === 1) {
+            display.value += button.id + ' ';
+            opMem = button.id
         }
-        else if(numMem.length > 0) {
-            let num = removeOp(display.value);
-            numMem.push(num);
-            let workingTotal = operate(button.id, numMem[numMem.length-2], numMem[numMem.length-1]);
+        else if(numMem.length === 2) {
+            workingTotal = operate(opMem, numMem[0], numMem[1]);
             display.value = workingTotal + " " + button.id + " ";
+            opMem = button.id;
+            numMem = [workingTotal];
         }
     })
 })
