@@ -31,10 +31,16 @@ operators.forEach((button) => {
             else if(numMem.length === 1) {
                 numMem.push(numTracker);
                 workingTotal = operate(opMem, numMem[0], numMem[1]);
-                display.value = workingTotal + " " + button.id + " ";
-                numTracker = '';
-                opMem = button.id;
-                numMem = [workingTotal];
+                if(isFinite(workingTotal) === false) {
+                    display.value = 'Nope.';
+                    clickedEquals = true;
+                }
+                else {
+                    display.value = workingTotal + " " + button.id + " ";
+                    numTracker = '';
+                    opMem = button.id;
+                    numMem = [workingTotal];
+                }
             }
         }
     })
@@ -44,9 +50,14 @@ equals.addEventListener('click', () => {
     if(numMem.length === 1) {
         numMem.push(numTracker);
         workingTotal = operate(opMem, numMem[0], numMem[1]);
+        if(isFinite(workingTotal) === false) {
+            display.value = 'Nope.';
+            clickedEquals = true;
+        }
+        else {
         display.value = workingTotal;
-        numTracker = '';
         clickedEquals = true;
+        }
     }
 })
 
