@@ -21,7 +21,7 @@ buttons.forEach((button) => {
 
 operators.forEach((button) => {
     button.addEventListener('click', () => {
-        if(clickedEquals === false) {
+        if(clickedEquals === false && display.value != '') {
             if(numMem.length === 0) {
                 numMem.push(numTracker);
                 display.value += ' ' + button.id + ' ';
